@@ -5,8 +5,7 @@ const UserSchema = Schema({
     first_name: { type: String },
     last_name: { type: String },
     email: { type: String },
-    firebase_uid: {type : String},
-
+    firebase_uid: {type : String},  
     contact: {
         type: Number,
         required: true
@@ -14,6 +13,7 @@ const UserSchema = Schema({
     is_onboarded: {
         type: Boolean
     },
+    group_exist: {type: Boolean},
     profession: { type: String },
     age: { type: Number },
     groups_joined: [{
@@ -26,3 +26,4 @@ const UserSchema = Schema({
 
 const User = mongoose.model('User', UserSchema);
 module.exports = User;
+

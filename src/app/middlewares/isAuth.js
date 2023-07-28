@@ -17,7 +17,7 @@ module.exports = async (request, response, next) => {
 
         request.user = {
             userId: decodedToken.id,
-            name: decodedToken?.name,
+            contact: decodedToken?.contact,
         }
         next()
     } catch (error) {

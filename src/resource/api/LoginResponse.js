@@ -7,7 +7,7 @@ class LoginResponse extends Resource {
   toArray () {
     const payload = {
       id: this._id,
-      name: this.name || null,
+      phone_no: this.contact || null,
     }
     const token = jwt.sign(payload, process.env.JWT_SECRET_KEY)
     return {

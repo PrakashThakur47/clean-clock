@@ -20,3 +20,48 @@ exports.phoneLogin = async (request, response, next) => {
     next(error)
   }
 }
+
+
+exports.onboardUser = async (request, response, next) => {
+  try {
+    const userId = request.user.userId;
+    const {first_name, last_name, email, profession, age} = request.body;
+
+    const data = {
+      first_name,
+      last_name,
+      email,
+      profession,
+      age,
+      is_onboarded: true
+    }
+    const user = await UserService.updateUserDetails(userId, data)
+
+    return responder(request, response, next, true, 100, user)
+  } catch (error) {
+    next(error)
+  }
+}
+
+exports.addGroup = async (request, response, next) => {
+  try {
+    const userId = request.user.userId;
+    const {addiction_duration, freq, craving_time, group_id} = request.body;
+
+    const data = {
+      group_details: {
+        addiction_duration,
+        freq,
+        craving_time,
+      },
+      group_id,
+      user_id: userId
+    }
+    const user = await UserService.createUserGroupDetails(data)
+    await UserService.updateUserDetails({_id: userId}, {group_exist: true})
+
+    return responder(request, response, next, true, 100, user)
+  } catch (error) {
+    next(error)
+  }
+}
