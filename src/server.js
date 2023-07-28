@@ -3,13 +3,13 @@ dotenv.config()
 const application = require('./app')
 const express = require('express')
 const app = express()
-// const cors = require('cors');
+const cors = require('cors');
 const mongoose = require('mongoose')
 
-// const corsOptions = {
-//     origin: `${process.env.BASE_URL}`
-// }
-// app.use(cors(corsOptions));
+const corsOptions = {
+    origin: "*"
+}
+app.use(cors(corsOptions));
 
 mongoose.connect(process.env.DATABASE_URL)
   .then(
