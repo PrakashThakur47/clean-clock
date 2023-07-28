@@ -1,0 +1,21 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["standard", "plugin:jsdoc/recommended-error"],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "rules": {
+    "jsdoc/require-jsdoc": [
+      1,
+      {
+        "publicOnly": true,
+        "contexts": ["ArrowFunctionExpression", "FunctionDeclaration", "FunctionExpression", "MethodDefinition"]
+      }
+    ]
+  }
+}

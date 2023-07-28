@@ -2,6 +2,9 @@ const jwt = require('jsonwebtoken')
 const Resource = require('resources.js')
 
 class LoginResponse extends Resource {
+  /**
+   *
+   */
   toArray () {
     console.log(this)
     const payload = {

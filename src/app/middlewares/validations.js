@@ -1,7 +1,9 @@
 const { body, validationResult } = require('express-validator')
 const Constants = require('../../config/constants')
 
-
+/**
+ *
+ */
 exports.adminLoginRules = () => {
   return [
     body('email').not().isEmpty().isEmail(),
@@ -9,7 +11,12 @@ exports.adminLoginRules = () => {
   ]
 }
 
-
+/**
+ *
+ * @param request
+ * @param _response
+ * @param next
+ */
 exports.validate = (request, _response, next) => {
   try {
     const errors = validationResult(request)

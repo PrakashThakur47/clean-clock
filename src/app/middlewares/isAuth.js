@@ -1,5 +1,11 @@
 const jwt = require('jsonwebtoken')
 
+/**
+ *
+ * @param request
+ * @param response
+ * @param next
+ */
 module.exports = async (request, response, next) => {
     const token = request.get('AuthorizationToken')
     let decodedToken
@@ -23,4 +29,14 @@ module.exports = async (request, response, next) => {
     } catch (error) {
         next(error)
     }
+    decodedToken = jwt.verify(token, secret_key)
+
+    request.user = {
+      userId: decodedToken.id,
+      name: decodedToken?.name
+    }
+    next()
+  } catch (error) {
+    next(error)
+  }
 }

@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const mongoose = require('mongoose')
+const { Schema } = mongoose
 
 const UserSchema = Schema({
     first_name: { type: String },
@@ -22,8 +22,13 @@ const UserSchema = Schema({
     profile_picture: { type: String },
     fcm_token: {type: String}
 
-}, { timestamps: true });
+}, { timestamps: true })
 
+<<<<<<< HEAD
+const User = mongoose.model('User', UserSchema)
+module.exports = User
+=======
 const User = mongoose.model('User', UserSchema);
 module.exports = User;
 
+>>>>>>> caa150870d10c116534660ef19485bf2e1dad577
