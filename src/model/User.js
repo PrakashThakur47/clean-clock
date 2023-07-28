@@ -2,14 +2,25 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const UserSchema = Schema({
-    name: {
-        type: String,
-        required: true
-    },
+    first_name: { type: String },
+    last_name: { type: String },
+    email: { type: String },
+    firebase_uid: {type : String},
+
     contact: {
         type: Number,
         required: true
-    }
+    },
+    is_onboarded: {
+        type: Boolean
+    },
+    profession: { type: String },
+    age: { type: Number },
+    groups_joined: [{
+        group_id: { type: Schema.Types.ObjectId, ref: 'Group', required: false }
+    }],
+    profile_picture: { type: String },
+    fcm_token: {type: String}
 
 }, { timestamps: true });
 
