@@ -1,7 +1,7 @@
 const AdminService = require("../../../service/AdminService.js");
 const bcrypt = require("bcryptjs");
 const responder = require("../../../util/responder");
-const LoginResponse = require("../../../resource/Admin/LoginResponse");
+const LoginResponse = require("../../../resource/admin/LoginResponse");
 
 
 exports.login = async (request, response, next) => {
