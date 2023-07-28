@@ -1,3 +1,4 @@
+
 exports.response_code = {
     100: 'Missing or invalid parameters!',
     102: 'Incorrect email',
@@ -22,4 +23,3 @@ exports.response_code = {
     121: 'User profile could not be fetched',
 }
 
-}
