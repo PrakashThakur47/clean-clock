@@ -24,11 +24,6 @@ const UserSchema = Schema({
 
 }, { timestamps: true })
 
-<<<<<<< HEAD
-const User = mongoose.model('User', UserSchema)
-module.exports = User
-=======
 const User = mongoose.model('User', UserSchema);
 module.exports = User;
 
->>>>>>> caa150870d10c116534660ef19485bf2e1dad577
