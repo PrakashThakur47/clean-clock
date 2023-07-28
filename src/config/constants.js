@@ -17,6 +17,9 @@ exports.response_code = {
     115: 'Group has been updated successfully',
     116: 'Group could not be updated',
     117: 'Group request has been approved',
-    118: 'Group request could not be approved'
+    118: 'Group request could not be approved',
+    119: 'User onboarded successfully',
+    120: 'User profile fetched successfully',
+    121: 'User profile could not be fetched',
 }
 

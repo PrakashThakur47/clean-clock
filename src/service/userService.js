@@ -24,3 +24,12 @@ exports.createUserGroupDetails = async (data) => {
 	let user = await UserGroupDetail.create(data);
 	return user;
 }
+
+exports.userProfile = async (user_id) =>{
+	let user = await User.find({_id: user_id, is_onboarded:true})
+	return user
+}
+
+exports.fetchGroups = async () => {
+	
+}

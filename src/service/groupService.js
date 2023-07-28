@@ -32,3 +32,27 @@ exports.disableGroup = async (groupId) => {
 exports.approveRequest = async (groupId) =>{
     return groupApproved = await Group.updateOne({ _id: groupId }, { is_approved: true })
 }
+
+exports.fetchGroup = async (requestBody) => {
+    let count
+    const matchGroup = { is_approved: true, is_disabled: false }
+    const matchSearchText = { name: { $regex: requestBody.searchText, $options: 'i' } }
+    const groupsFetched = await Group.aggregate([
+      { $match: matchGroup },
+      { $match: matchSearchText },
+      { $sort: { createdAt: -1 } },
+      { $skip: requestBody.offset },
+      { $limit: requestBody.limit }
+    ])
+    
+    if (requestBody.searchText) {
+      const group = await Group.aggregate([
+        { $match: matchSearchText }
+      ])
+      count = group.length
+
+    } else {
+      count = await Group.countDocuments(matchGroup)
+    }
+    return { groupsFetched, count }
+}
