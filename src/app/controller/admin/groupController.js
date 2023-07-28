@@ -1,1 +1,1 @@
-const responder = require("../../../util/responder");
+const responder = require('../../../util/responder')

@@ -1,8 +1,14 @@
 const UserService = require('../../../service/userService')
-const responder = require("../../../util/responder")
+const responder = require('../../../util/responder')
 const firebase = require('../../../util/firebase')
 const LoginResponse = require('../../../resource/api/LoginResponse')
 
+/**
+ *
+ * @param request
+ * @param response
+ * @param next
+ */
 exports.phoneLogin = async (request, response, next) => {
   try {
     const firebaseToken = request.get('firebaseToken')
