@@ -16,7 +16,7 @@ exports.fetchGroupsByStatus = async (status, limit, offset) => {
   let groupsFound
   switch (status) {
     case 'APPROVED':
-      groupsFound = await Group.find({ is_request: false }).limit(limit).skip(offset)
+      groupsFound = await Group.find({ is_requested: false }).limit(limit).skip(offset)
       break;
     case 'REQUESTED':
       groupsFound = await Group.find({ is_approved: false, is_request: true, is_disabled: false }).limit(limit).skip(offset)
