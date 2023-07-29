@@ -11,14 +11,12 @@ const PostResponse = require("../../../resource/common/PostResponse");
 exports.postCreate = async (request, response, next) => {
   try {
     // Post create work
-    const post = await PostService.postCreate(request.body); // need to pass 2nd argument user_id from request.user
+    const post = await PostService.postCreate(request.body, request.user.userId);
     if (!post) {
       return responder(request, response, next, true, 102, {});
     }
-    console.log(post);
     return responder(request, response, next, true, 104, new PostResponse(post).exec());
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
@@ -41,7 +39,6 @@ exports.postGet = async (request, response, next) => {
     }
     return responder(request, response, next, true, 104, PostResponse.collection(posts));
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
