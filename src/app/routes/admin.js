@@ -3,6 +3,8 @@ const validations = require("../middlewares/validations");
 const authController = require("../controller/admin/authController");
 const GroupController = require("../controller/admin/groupController");
 const isAuth = require("../middlewares/isAuth");
+const spamController = require("../controller/api/spamController");
+
 
 router.post("/login", authController.login);
 router.post("/create-update-group", isAuth, GroupController.createUpdateGroup);

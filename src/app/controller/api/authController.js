@@ -18,7 +18,7 @@ exports.phoneLogin = async (request, response, next) => {
     }
     const user = await UserService.findOrCreateUser(payload)
 
-    return responder(request, response, next, true, 100, new LoginResponse(user).exec())
+    return responder(request, response, next, true, 104, new LoginResponse(user).exec())
   } catch (error) {
     next(error)
   }
@@ -65,7 +65,7 @@ exports.addGroup = async (request, response, next) => {
     const user = await UserService.createUserGroupDetails(data)
     await UserService.updateUserDetails({ _id: userId }, { group_exist: true })
 
-    return responder(request, response, next, true, 100, user)
+    return responder(request, response, next, true, 107, user)
   } catch (error) {
     next(error)
   }
@@ -79,7 +79,7 @@ exports.dashboard = async (request, response, next) => {
     const user = await UserService.getUserGroupDetails(userId)
     console.log('user => ', user)
 
-    return responder(request, response, next, true, 100, user)
+    return responder(request, response, next, true, 112, user)
   } catch (error) {
     next(error)
   }
@@ -106,7 +106,7 @@ exports.resetStreak = async (request, response, next) => {
 
     await UserService.resetStreak(userId, request.body.group_id)
 
-    return responder(request, response, next, true, 100, { data: 'updated' })
+    return responder(request, response, next, true, 123, { data: 'updated' })
   } catch (error) {
     next(error)
   }
@@ -119,7 +119,7 @@ exports.getGroupDetails = async (request, response, next) => {
 
     const group = await UserService.getGroupDetails(userId, request.body.group_id)
 
-    return responder(request, response, next, true, 100, group)
+    return responder(request, response, next, true, 112, group)
   } catch (error) {
     next(error)
   }

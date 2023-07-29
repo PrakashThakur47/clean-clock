@@ -21,5 +21,11 @@ exports.response_code = {
     119: 'User onboarded successfully',
     120: 'User profile fetched successfully',
     121: 'User profile could not be fetched',
+    122: 'Users fetched successfully',
+    123: 'Streak has been reset',
+    124: 'Post created successfully',
+    125: 'Post could not be successfull',
+    126: 'Post fetched successfully',
+    
 }
 
