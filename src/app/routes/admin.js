@@ -12,5 +12,6 @@ router.post("/fetch-group", isAuth, GroupController.fetchGroup);
 router.post("/approve-group-request", isAuth, GroupController.approveRequest);
 router.post("/enable-disable-group", isAuth, GroupController.disableStatus);
 router.post('/get-users', isAuth, authController.getUsers)
+router.get('/get-all-spams', isAuth, spamController.getAllSpam)
 
 module.exports = router;

@@ -17,3 +17,7 @@ exports.spamGet = async (spam_id = null) => {
   }
   return await Spam.find({}).populate(["post_id", "user_id"]);
 };
+
+exports.getAllSpam = async () => {
+  return await Spam.find({}).populate(["post_id", "user_id"]);
+};

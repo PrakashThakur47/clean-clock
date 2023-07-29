@@ -26,6 +26,8 @@ exports.response_code = {
     124: 'Post created successfully',
     125: 'Post could not be successfull',
     126: 'Post fetched successfully',
+    127: 'Spams fetched successfully'
+    
     
 }
 

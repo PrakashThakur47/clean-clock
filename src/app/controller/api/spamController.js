@@ -37,9 +37,30 @@ exports.spamGet = async (request, response, next) => {
     if (request.params.spam_id) {
       return responder(request, response, next, true, 104, new SpamResponse(spams).exec());
     }
-    return responder(request, response, next, true, 104, SpamResponse.collection(spams));
+    return responder(request, response, next, true, 127, SpamResponse.collection(spams));
   } catch (error) {
     next(error);
   }
 };
+
+
+/**
+ *
+ * @param request
+ * @param response
+ * @param next
+ */
+exports.getAllSpam = async (request, response, next) => {
+  try {
+    // Spam get work
+    const spams = await SpamService.getAllSpam(request.params.spam_id);
+    if (!spams) {
+      return responder(request, response, next, true, 102, {});
+    }
+    return responder(request, response, next, true, 127, SpamResponse.collection(spams));
+  } catch (error) {
+    next(error);
+  }
+};
+
 
