@@ -13,9 +13,9 @@ exports.postCreate = async (request, response, next) => {
     // Post create work
     const post = await PostService.postCreate(request.body, request.user.userId);
     if (!post) {
-      return responder(request, response, next, true, 102, {});
+      return responder(request, response, next, true, 125, {});
     }
-    return responder(request, response, next, true, 104, new PostResponse(post).exec());
+    return responder(request, response, next, true, 124, new PostResponse(post).exec());
   } catch (error) {
     next(error);
   }
@@ -35,9 +35,9 @@ exports.postGet = async (request, response, next) => {
       return responder(request, response, next, true, 102, {});
     }
     if (request.params.post_id) {
-      return responder(request, response, next, true, 104, new PostResponse(posts).exec());
+      return responder(request, response, next, true, 126, new PostResponse(posts).exec());
     }
-    return responder(request, response, next, true, 104, PostResponse.collection(posts));
+    return responder(request, response, next, true, 126, PostResponse.collection(posts));
   } catch (error) {
     next(error);
   }
