@@ -26,7 +26,7 @@ exports.fetchGroupsByStatus = async (request, response, next) => {
   try {
     const groupsFound = await GroupService.fetchGroupsByStatus(request.body.status, request.body.limit, request.body.offset);
 
-    return responder(request, response, next, true, !groupsFound.length ? 111 : 112, !groupsFound.length ? {} : GroupListResponse.collection(groupsFound));
+    return responder(request, response, next, true, !groupsFound.length ? 111 : 112, !groupsFound.length ? [] : GroupListResponse.collection(groupsFound));
   } catch (error) {
     console.log(error);
     next(error);
@@ -43,13 +43,14 @@ exports.approveRequest = async (request, response, next) => {
   }
 };
 
-exports.disableGroup = async (request, response, next) => {
+exports.disableStatus = async (request, response, next) => {
   try {
     const group_id = request.body.group_id;
-    const disableGroup = await GroupService.disableGroup(group_id);
+    const disableGroup = await GroupService.disableStatus(group_id);
     return responder(request, response, next, true, disableGroup.modifiedCount ? 115 : 116, {});
   } catch (error) {
     console.log(error);
     next(error);
   }
 };
+

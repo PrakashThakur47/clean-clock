@@ -8,6 +8,7 @@ router.post("/login", authController.login);
 router.post("/create-update-group", isAuth, GroupController.createUpdateGroup);
 router.post("/fetch-group", isAuth, GroupController.fetchGroupsByStatus);
 router.post("/approve-group-request", isAuth, GroupController.approveRequest);
-router.post("/delete-group", isAuth, GroupController.disableGroup);
+router.post("/enable-disable-group", isAuth, GroupController.disableStatus);
+
 
 module.exports = router;
