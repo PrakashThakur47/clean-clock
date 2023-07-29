@@ -127,11 +127,10 @@ exports.getGroupDetails = async (request, response, next) => {
 
 exports.getGroups = async (request, response, next) => {
   try {
-    const groupsFetched = await GroupService.fetchGroup(request.body)
-    if (!groupsFetched.groupsFetched.length)
-      return responder(request, response, next, true, 111, {})
-
-    return responder(request, response, next, true, 112, { total: groupsFetched.count, groups: GroupListResponse.collection(groupsFetched.groupsFetched) })
+    const {groupsFetched, count} = await GroupService.fetchGroup(request.body)
+    console.log(groupsFetched)
+    console.log(count)
+    return responder(request, response, next, true, !groupsFetched.length ? 111 : 112, !groupsFetched.length ? [] : { total: count, groups: GroupListResponse.collection(groupsFetched) });
   } catch (error) {
     console.log(error)
     next(error)
