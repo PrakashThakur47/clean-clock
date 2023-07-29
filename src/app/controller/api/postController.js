@@ -11,7 +11,7 @@ const PostResponse = require("../../../resource/common/PostResponse");
 exports.postCreate = async (request, response, next) => {
   try {
     // Post create work
-    const post = await PostService.postCreate(request.body); // need to pass 2nd argument user_id from request.user
+    const post = await PostService.postCreate(request.body, request.user.userId);
     if (!post) {
       return responder(request, response, next, true, 102, {});
     }

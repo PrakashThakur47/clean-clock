@@ -11,7 +11,7 @@ const SpamResponse = require("../../../resource/common/SpamResponse");
 exports.spamCreate = async (request, response, next) => {
   try {
     // Spam create work
-    const spam = await SpamService.spamCreate(request.body);
+    const spam = await SpamService.spamCreate(request.body, request.user.userId);
     if (!spam) {
       return responder(request, response, next, true, 102, {});
     }

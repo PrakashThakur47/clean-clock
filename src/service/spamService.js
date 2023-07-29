@@ -13,7 +13,7 @@ exports.spamCreate = async (data, userId = null) => {
  */
 exports.spamGet = async (spam_id = null) => {
   if (spam_id) {
-    return await Spam.findOne({ _id: spam_id.pop }).populate(["post_id", "user_id"]);
+    return await Spam.findOne({ _id: spam_id }).populate(["post_id", "user_id"]);
   }
   return await Spam.find({}).populate(["post_id", "user_id"]);
 };
