@@ -35,10 +35,10 @@ exports.approveRequest = async (groupId) =>{
 
 exports.fetchGroup = async (requestBody) => {
     let count
-    const matchGroup = { is_approved: true, is_disabled: false }
+   const matchGroup = { is_request: false}
     const matchSearchText = { name: { $regex: requestBody.searchText, $options: 'i' } }
     const groupsFetched = await Group.aggregate([
-      { $match: matchGroup },
+     { $match: matchGroup },
       { $match: matchSearchText },
       { $sort: { createdAt: -1 } },
       { $skip: requestBody.offset },

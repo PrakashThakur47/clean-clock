@@ -8,7 +8,7 @@ class GroupResponse extends Resource {
             id: this._id,
             name: this.name,
             user_count: this.total_user,
-
+            is_disabled: this.is_disabled
         }
     }
 }
