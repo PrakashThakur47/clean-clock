@@ -138,11 +138,3 @@ exports.getGroups = async (request, response, next) => {
   }
 }
 
-exports.getUsers = async (request,response,next) => {
-  try {
-    const users = await UserService.getAllUsers();
-    return responder(request, response, next, true, 112, users)
-  } catch (error) {
-    next(error)
-  }
-}
