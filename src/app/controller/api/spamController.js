@@ -15,9 +15,8 @@ exports.spamCreate = async (request, response, next) => {
     if (!spam) {
       return responder(request, response, next, true, 102, {});
     }
-    return responder(request, response, next, true, 104, new SpamResponse().exec());
+    return responder(request, response, next, true, 104, new SpamResponse(spam).exec());
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
@@ -40,7 +39,6 @@ exports.spamGet = async (request, response, next) => {
     }
     return responder(request, response, next, true, 104, SpamResponse.collection(spams));
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };

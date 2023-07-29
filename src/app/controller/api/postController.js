@@ -15,10 +15,8 @@ exports.postCreate = async (request, response, next) => {
     if (!post) {
       return responder(request, response, next, true, 102, {});
     }
-    console.log(post);
     return responder(request, response, next, true, 104, new PostResponse(post).exec());
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
@@ -41,7 +39,6 @@ exports.postGet = async (request, response, next) => {
     }
     return responder(request, response, next, true, 104, PostResponse.collection(posts));
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };
