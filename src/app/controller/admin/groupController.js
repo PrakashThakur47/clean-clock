@@ -22,11 +22,11 @@ exports.createUpdateGroup = async (request, response, next) => {
   }
 };
 
-exports.fetchGroupsByStatus = async (request, response, next) => {
+exports.fetchGroup = async (request, response, next) => {
   try {
-    const groupsFound = await GroupService.fetchGroupsByStatus(request.body.status, request.body.limit, request.body.offset);
-
-    return responder(request, response, next, true, !groupsFound.length ? 111 : 112, !groupsFound.length ? [] : GroupListResponse.collection(groupsFound));
+    const  {groupsFetched, count} = await GroupService.fetchGroup(request.body);
+    console.log(groupsFetched)
+    return responder(request, response, next, true, !groupsFetched.length ? 111 : 112, !groupsFetched.length ? [] : { total: count, groups: GroupListResponse.collection(groupsFetched) });
   } catch (error) {
     console.log(error);
     next(error);

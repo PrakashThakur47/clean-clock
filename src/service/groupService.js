@@ -12,18 +12,6 @@ exports.createNewGroup = async (requestBody) => {
   return group
 }
 
-exports.fetchGroupsByStatus = async (status, limit, offset) => {
-  let groupsFound
-  switch (status) {
-    case 'APPROVED':
-      groupsFound = await Group.find({ is_requested: false }).limit(limit).skip(offset)
-      break;
-    case 'REQUESTED':
-      groupsFound = await Group.find({ is_approved: false, is_request: true, is_disabled: false }).limit(limit).skip(offset)
-      break;
-  }
-  return groupsFound
-}
 
 exports.disableStatus = async (groupId) => {
   const groupFound = await Group.findOne({ _id: groupId })
@@ -38,8 +26,17 @@ exports.approveRequest = async (groupId) => {
 }
 
 exports.fetchGroup = async (requestBody) => {
-  let count
-  const matchGroup = { is_request: false }
+
+  let count, matchGroup
+
+  switch (requestBody.status) {
+    case 'APPROVED':
+      matchGroup = { is_requested: false }
+      break;
+    case 'REQUESTED':
+      matchGroup = { is_requested: true }
+      break;
+  }
   const matchSearchText = { name: { $regex: requestBody.searchText, $options: 'i' } }
   const groupsFetched = await Group.aggregate([
     { $match: matchGroup },
@@ -58,5 +55,6 @@ exports.fetchGroup = async (requestBody) => {
   } else {
     count = await Group.countDocuments(matchGroup)
   }
+
   return { groupsFetched, count }
 }
