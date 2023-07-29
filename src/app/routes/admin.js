@@ -9,6 +9,6 @@ router.post("/create-update-group", isAuth, GroupController.createUpdateGroup);
 router.post("/fetch-group", isAuth, GroupController.fetchGroupsByStatus);
 router.post("/approve-group-request", isAuth, GroupController.approveRequest);
 router.post("/enable-disable-group", isAuth, GroupController.disableStatus);
-
+router.post('/get-users', isAuth, UserController.getUsers)
 
 module.exports = router;

@@ -54,3 +54,15 @@ exports.userProfile = async (user_id) =>{
 	return user
 }
 
+
+exports.getAllUsers = async () =>{
+	let users = await User.find({is_onboarded:true, group_exist: true})
+	const userList = []
+	const data = await Promise.all(users.map(async user => {
+		const groups = await UserGroupDetail.count({user_id: user._id})
+			userList.push({...user._doc, group_count: groups})
+		return user;
+	  }))
+	
+	return userList
+}
